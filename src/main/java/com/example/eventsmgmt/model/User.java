@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -61,6 +62,14 @@ public class User {
         inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> role;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "user_event",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "event_id")
+    )
+    private Event event;
 
     // public User(int id, String username, String password, String email, String firstName, String middleName,
     //         String lastName, String mobile, Timestamp createdAt, Timestamp lastUpdated, Set<Role> role) {
@@ -181,6 +190,14 @@ public class User {
 
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
     }
 
 }

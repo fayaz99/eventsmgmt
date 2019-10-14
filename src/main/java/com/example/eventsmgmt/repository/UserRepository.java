@@ -1,5 +1,6 @@
 package com.example.eventsmgmt.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.example.eventsmgmt.model.User;
@@ -13,6 +14,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByUsername(String username);
     
     Optional<User> findById(int id);
+
+    List<User> findByRoleName(String name);
 
     boolean existsByUsername(String username);
 

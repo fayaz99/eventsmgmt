@@ -11,5 +11,4 @@ import org.springframework.stereotype.Repository;
 public interface RoleRepository extends JpaRepository<Role, Integer> {
 
     Optional<Role> findByName(String name);
-    
 }
